@@ -1,0 +1,167 @@
+/**
+ * Global styles for HoneyTrap application.
+ * 
+ * Accessibility-first CSS using design tokens for:
+ * - Color palette (text, primary, success, error)
+ * - Spacing scale (space-1 through space-5)
+ * - Border radius (sm, md)
+ * - Typography (font stack, line height)
+ * 
+ * Focus indicators: 3px solid blue with 2px offset on all interactive elements.
+ * Form inputs: Full width responsive, 1rem font size (prevents iOS zoom).
+ * 
+ * Components:
+ * - .app-* : Main app layout and typography
+ * - .form-* : Form field styling (accessible inputs/textareas)
+ * - .hc-* : Human check form components (checkbox, error messages)
+ * - .honeypot-container : Hidden honeypot field positioning
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui;
+  --color-text: #111;
+  --color-primary: #2563eb;
+  --color-primary-dark: #1e40af;
+  --color-success: #047857;
+  --color-border: #6b7280;
+  --color-error: #dc2626;
+  --color-error-bg: #fee2e2;
+  --color-error-border: #fecaca;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 4rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --content-width: 500px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* Layout */
+.app-container {
+  max-width: var(--content-width);
+  margin: var(--space-4) auto;
+  padding: var(--space-4);
+}
+
+.app-success {
+  text-align: center;
+  padding: var(--space-5) var(--space-4);
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+/* Typography */
+.app-title,
+.app-success-title {
+  margin-top: 0;
+}
+
+.app-title {
+  color: var(--color-primary-dark);
+}
+
+.app-success-title {
+  color: var(--color-success);
+}
+
+/* Buttons */
+.app-button {
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.app-button--success {
+  background: var(--color-success);
+}
+
+.app-button--primary {
+  background: var(--color-primary);
+  width: 100%;
+}
+
+/* Form Fields */
+.form-field {
+  margin-bottom: var(--space-3);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: bold;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+/* Accessibility: Focus indicators */
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+label:focus-within {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Form Validation */
+.hc-checkbox {
+  margin-top: var(--space-2);
+}
+
+.hc-checkbox-input {
+  margin-right: 8px;
+}
+
+.hc-error {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  border: 2px solid var(--color-error-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.hc-error:focus {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Bot Protection */
+.honeypot-container {
+  position: absolute;
+  left: -10000px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
