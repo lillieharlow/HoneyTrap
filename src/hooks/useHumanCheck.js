@@ -53,7 +53,8 @@ export function useHumanCheck({ minTime = 2500 } = {}) {
 
       if (pointerMoves.current < 10 && keyPresses.current < 3) {
         setError(
-          "Please interact with the form using your mouse/touch or keyboard before submitting.",
+          "Please interact with the form using your mouse/touch or " +
+            "keyboard before submitting.",
         );
         return false;
       }
