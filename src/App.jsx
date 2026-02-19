@@ -47,33 +47,36 @@ export default function App() {
 
   return (
     <main className="app-container">
-      <h1 className="app-title">🛡️ HoneyTrap</h1>
+      <h1 className="app-title">HoneyTrap</h1>
       <p>
-        <strong>CAPTCHA-free</strong> accessible form protection using 3
-        invisible layers
+        <strong>CAPTCHA-free</strong> accessibility-first form protection using
+        three invisible layers
       </p>
 
-      <HumanCheckForm onValidSubmit={handleValidSubmit} showCheckbox={true}>
-        <FormField id="email" label="Email">
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            className="form-input"
-          />
-        </FormField>
+      <HumanCheckForm onValidSubmit={handleValidSubmit}>
+        <fieldset>
+          <legend>Contact Form</legend>
+          <FormField id="email" label="Email">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              className="form-input"
+            />
+          </FormField>
 
-        <FormField id="message" label="Message">
-          <textarea
-            id="message"
-            name="message"
-            required
-            rows={4}
-            className="form-textarea"
-          />
-        </FormField>
+          <FormField id="message" label="Message">
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows={4}
+              className="form-textarea"
+              aria-multiline="true"
+            />
+          </FormField>
+        </fieldset>
 
         <button type="submit" className="app-button app-button--primary">
           Send Message

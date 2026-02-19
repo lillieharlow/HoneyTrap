@@ -10,6 +10,7 @@
  * @param {Object} options
  * @param {number} [options.minTime=2500] - Minimum milliseconds before form submission is allowed.
  * @returns {Object} { error, validate(formElement, honeyTrap), reset() }
+ * validate returns { valid: boolean, error: string|null }
  */
 
 import { useRef, useCallback, useState, useEffect } from "react";
@@ -41,26 +42,28 @@ export function useHumanCheck({ minTime = 2500 } = {}) {
       const now = Date.now();
 
       if (now - startTime.current < minTime) {
-        setError("Form submitted too quickly. Please take your time.");
-        return false;
+        const errorMsg = "Form submitted too quickly. Please take your time.";
+        setError(errorMsg);
+        return { valid: false, error: errorMsg };
       }
 
       const honeypot = formElement.elements[honeyTrap];
       if (honeypot?.value.trim()) {
-        setError("Bot detected. Please leave the honeypot field empty.");
-        return false;
+        const errorMsg = "Bot detected. Please leave the honeypot field empty.";
+        setError(errorMsg);
+        return { valid: false, error: errorMsg };
       }
 
       if (pointerMoves.current < 10 && keyPresses.current < 3) {
-        setError(
+        const errorMsg =
           "Please interact with the form using your mouse/touch or " +
-            "keyboard before submitting.",
-        );
-        return false;
+          "keyboard before submitting.";
+        setError(errorMsg);
+        return { valid: false, error: errorMsg };
       }
 
       setError(null);
-      return true;
+      return { valid: true, error: null };
     },
     [minTime],
   );

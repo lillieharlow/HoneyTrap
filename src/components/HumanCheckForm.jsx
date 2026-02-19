@@ -10,7 +10,6 @@
  * @param {Object} props
  * @param {JSX.Element} props.children - Form fields to render inside the form.
  * @param {Function} [props.onValidSubmit] - Callback fired when form passes all validation checks.
- * @param {boolean} [props.showCheckbox=false] - Whether to display the "I confirm I am human" checkbox.
  * @param {number} [props.minTime=2500] - Minimum milliseconds before form submission is allowed.
  * @param {string} [props.honeypotName="website"] - Name attribute for the hidden honeypot field.
  * @returns {JSX.Element}
@@ -18,22 +17,19 @@
 
 import { useRef, useEffect, useState } from "react";
 
-import { useHumanCheck } from "../hooks/useHumancheck";
+import { useHumanCheck } from "../hooks/useHumanCheck";
 import HoneypotField from "./HoneypotField";
 
 export default function HumanCheckForm({
   children,
   onValidSubmit,
-  showCheckbox = false,
   minTime = 2500,
   honeypotName = "website",
 }) {
   const formRef = useRef(null);
-  const checkboxRef = useRef(null);
   const errorRef = useRef(null);
-  const [checked, setChecked] = useState(false);
   const [error, setError] = useState(null);
-  const { error: hookError, validate, reset } = useHumanCheck({ minTime });
+  const { validate, reset } = useHumanCheck({ minTime });
 
   useEffect(() => {
     reset();
@@ -50,19 +46,9 @@ export default function HumanCheckForm({
     const form = formRef.current;
     if (!form) return;
 
-    if (showCheckbox && !checked) {
-      setError("Please confirm you're not a robot by checking the box.");
-      checkboxRef.current?.focus();
-      checkboxRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-      return;
-    }
-
-    const isValid = validate(form, honeypotName);
-    if (!isValid) {
-      setError(hookError);
+    const result = validate(form, honeypotName);
+    if (!result.valid) {
+      setError(result.error);
       return;
     }
 
@@ -80,22 +66,6 @@ export default function HumanCheckForm({
       <HoneypotField name={honeypotName} />
 
       {children}
-
-      {showCheckbox && (
-        <div className="hc-checkbox">
-          <label htmlFor="human-check">
-            <input
-              id="human-check"
-              ref={checkboxRef}
-              type="checkbox"
-              checked={checked}
-              onChange={(e) => setChecked(e.target.checked)}
-              className="hc-checkbox-input"
-            />
-            Tick this box if you're human!
-          </label>
-        </div>
-      )}
 
       {error && (
         <div

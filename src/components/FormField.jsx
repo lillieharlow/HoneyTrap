@@ -3,7 +3,7 @@
  * Label is associated with input via htmlFor/id for clear semantic connection.
  *
  * Accessibility: Screen readers announce labels, label click focuses input, keyboard users interact naturally.
- * Bot protection note: User types in these fields to satisfy keyboard interaction check.
+ * A human user types in these fields to satisfy keyboard interaction check.
  *
  * @param {Object} props
  * @param {string} props.id - Input id used for the label association.
