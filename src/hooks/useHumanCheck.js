@@ -40,7 +40,6 @@ export function useHumanCheck({ minTime = 2500 } = {}) {
   const validate = useCallback(
     (formElement, honeyTrap) => {
       const now = Date.now();
-
       if (now - startTime.current < minTime) {
         const errorMsg = "Form submitted too quickly. Please take your time.";
         setError(errorMsg);
