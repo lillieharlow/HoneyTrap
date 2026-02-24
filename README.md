@@ -256,7 +256,6 @@ honeytrap/
 
 HoneyTrap uses **JSDoc** commenting style for all JavaScript files. Each JSDoc comment is immediately before the code it documents.
 
-
 ### JSDoc Tags
 
 - `@param` - Parameter type and description
@@ -268,23 +267,24 @@ HoneyTrap uses **JSDoc** commenting style for all JavaScript files. Each JSDoc c
 ### Comment Syntax
 
 - **JavaScript files (`.js`, `.jsx`):** `/** */` for JSDoc, `//` for inline comments
-- **CSS files:** `/* */` 
+- **CSS files:** `/* */`
 - **HTML files:** `<!-- -->`
 - **JSON files:** No comments
 - **Config files (`.gitignore`):** `#`
 
-
 ### Code Formatting
 
-Enforced by ESLint
+Enforced by ESLint.
 
 **Basic Formatting:**
+
 - **Line length:** 80 characters maximum
 - **Indentation:** 2 spaces
 - **Quotes:** Double quotes
 - **Semicolons:** Required
 
 **Code Quality:**
+
 - **React Hooks:** Follows React Hooks best practices (dependency arrays, naming)
 - **React Refresh:** Components must be default or named exports only
 - **Unused variables:** Not allowed (except uppercase constants like `_UNUSED`)
