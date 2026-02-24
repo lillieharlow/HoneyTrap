@@ -1,12 +1,16 @@
 # HoneyTrap
 
-HoneyTrap is a client-side, accessibility-first React form library that's 100% CAPTCHA-free and WCAG 2.2 AA compliant. Silently detecting bots through three invisible layers of behavioral analysis that low-effort bots can't replicate:
+A client-side, accessibility-first React form library that stops spam bots without CAPTCHAs. 100% WCAG 2.2 AA compliant.
 
-- **Honeypot field:** Hidden field input that only bots fill
-- **Timing validation:** Prevents instant submissions
-- **Interaction detection:** Requires pointer movement OR keyboard input
+**Detects bots through three invisible layers of human behaviour**
 
-Creating accessibility-first forms is more than just a trend, it’s a basic human right. 
+- **1. Honeypot field:** Hidden field input that only bots fill
+- **2. Timing validation:** Prevents instant, automated spam submissions
+- **3. Interaction detection:** Tracks pointer movement OR keyboard inputs
+
+Creating accessibility-first forms is more than just a trend; it’s a basic human right. 
+
+**Security Note:** HoneyTrap provides client-side bot detection. Server-side validation and database constraints are still required for comprehensive security.
 
 MIT License.
 
