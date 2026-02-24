@@ -2,15 +2,13 @@
 
 A client-side, accessibility-first React form library that stops spam bots without CAPTCHAs. 100% WCAG 2.2 AA compliant.
 
-**Detects bots through three invisible layers of human behaviour**
+**Detects bots through three invisible layers of human behavior**
 
 - **1. Honeypot field:** Hidden field input that only bots fill
 - **2. Timing validation:** Prevents instant, automated spam submissions
 - **3. Interaction detection:** Tracks pointer movement OR keyboard inputs
 
-Creating accessibility-first forms is more than just a trend; it’s a basic human right. 
-
-**Security Note:** HoneyTrap provides client-side bot detection. Server-side validation and database constraints are still required for comprehensive security.
+**Security Note:** HoneyTrap provides client-side bot protection. Server-side validation and database constraints are still required for comprehensive security.
 
 MIT License.
 
@@ -29,8 +27,8 @@ MIT License.
   - [Development Dependencies](#development-dependencies)
 - [Project Structure](#project-structure)
 - [Documentation Style](#documentation-style)
-    -[JSDoc Tags](#jsdoc-tags)
-    -[Code Formatting](#code-formatting)
+  - [JSDoc Tags](#jsdoc-tags)
+  - [Code Formatting](#code-formatting)
 
 ---
 
@@ -49,6 +47,7 @@ MIT License.
 - **Node.js:** 18.x or higher
 - **npm:** 9.x or higher
 - **React:** 19.x (compatible with 18.x)
+- **Git:** Any recent version (for cloning the repository)
 
 ---
 
@@ -57,26 +56,31 @@ MIT License.
 ### Demo Install
 
 #### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/lillielillielillie/honeytrap.git
 cd honeytrap
 ```
 
 #### 2. Install Dependencies
+
 ```bash
 npm install
 ```
 
 #### 3. Start the Demo
+
 ```bash
 npm run dev
 ```
+
 Open `http://localhost:5173` in your browser to interact with the HoneyTrap form components.
 
 ### Existing Project Install
 
 #### 1. Copy Files
-Copy these files into your React project:
+
+Copy these files into your React project `src` directory (manually via file explorer or using terminal commands):
 
 ```
 your-project/
@@ -90,6 +94,7 @@ your-project/
 ```
 
 #### 2. Verify React Version
+
 Ensure you have React 18.x or 19.x installed:
 
 ```bash
@@ -97,17 +102,19 @@ npm install react@^19.2.0 react-dom@^19.2.0
 ```
 
 #### 3. Add Accessibility-first CSS
+
 HoneyTrap adheres to specific CSS styling to meet WCAG 2.2 AA standards. Copy and paste the CSS from [ACCESSIBILITY_CSS.md](ACCESSIBILITY_CSS.md) into your project's `index.css`.
 
 #### 4. Import and Use
-1. Open the file that contains your form component (for example, `ContactForm.jsx`).
+
+1. Open the file that contains your form component.
 2. Import `HumanCheckForm`, `FormField` and CSS styles from `index.css`.
 3. Replace your `<form>` element with `<HumanCheckForm onValidSubmit={handleSubmit}>`.
 4. Replace each `<input>` and `<label>` pair with `<FormField>`.
 5. Add `className="form-input"` to every `<input>` element.
 6. Add `className="form-textarea"` to every `<textarea>` element.
 
-Here is a complete example you can copy and adjust:
+Example:
 
 ```jsx
 import HumanCheckForm from "./components/HumanCheckForm";
@@ -187,11 +194,11 @@ npm run lint
 
 ## Component Guide
 
-| Component              | Type      | Purpose                                             | Key Features                                                                                                                                                                                      |
-| ---------------------- | --------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **useHumanCheck.js**   | Hook      | Core validation logic for detecting bot submissions | - Keyboard + pointer OR logic (10+ movements OR 3+ key presses)<br/>- Text-based error messages<br/>- 2500ms minimum timing check<br/>- Accessibility-neutral (no DOM assumptions)            |
-| **HoneypotField.jsx**  | Component | Hidden field that only bots fill                    | - `tabIndex={-1}` removes from keyboard focus<br/>- `aria-hidden="true"` hides from screen readers<br/>- `autoComplete="off"` prevents browser autofill<br/>- Standard "website" field name catches common bots |
-| **FormField.jsx**      | Component | Accessible label + input wrapper                    | - htmlFor/id association (WCAG 1.3.1)<br/>- Semantic HTML with proper `<label>` element<br/>- Screen reader support for all inputs<br/>- Works with any form control (input, textarea, select)  |
+| Component              | Type      | Purpose                                             | Key Features                                                                                                                                                                                                       |
+| ---------------------- | --------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **useHumanCheck.js**   | Hook      | Core validation logic for detecting bot submissions | - Keyboard + pointer OR logic (10+ movements OR 3+ key presses)<br/>- Text-based error messages<br/>- 2500ms minimum timing check<br/>- Accessibility-neutral (no DOM assumptions)                                 |
+| **HoneypotField.jsx**  | Component | Hidden field that only bots fill                    | - `tabIndex={-1}` removes from keyboard focus<br/>- `aria-hidden="true"` hides from screen readers<br/>- `autoComplete="off"` prevents browser autofill<br/>- Standard "website" field name catches common bots    |
+| **FormField.jsx**      | Component | Accessible label + input wrapper                    | - htmlFor/id association (WCAG 1.3.1)<br/>- Semantic HTML with proper `<label>` element<br/>- Screen reader support for all inputs<br/>- Works with any form control (input, textarea, select)                     |
 | **HumanCheckForm.jsx** | Component | Main form wrapper with validation & error handling  | - `aria-live="assertive"` + `role="alert"` for screen readers<br/>- Focus management & scrolling to errors<br/>- `noValidate` prevents browser interference<br/>- Conditional error rendering & honeypot inclusion |
 
 ---
@@ -246,7 +253,7 @@ honeytrap/
 
 ## Documentation Style
 
-HoneyTrap uses **JSDoc** commenting style to denote each file:
+HoneyTrap uses **JSDoc** commenting style for all JavaScript files:
 
 ```javascript
 /**
