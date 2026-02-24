@@ -1,3 +1,4 @@
+// biome-ignore assist/source/organizeImports: keep imports organized
 import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -25,6 +26,9 @@ export default defineConfig([
     rules: {
       "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
       "max-len": ["warn", { code: 80, ignoreComments: true }],
+      "indent": ["error", 2],
+      "quotes": ["error", "double"],
+      "semi": ["error", "always"],
     },
   },
 ]);
