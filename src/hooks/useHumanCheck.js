@@ -1,6 +1,6 @@
 /**
- * Hook that provides form validation to detect and prevent bot submissions.
- * IMPORTANT: This is client-side protection only. Server-side validation is required for actual security.
+ * Hook that provides form validation to detect bot submissions.
+ * IMPORTANT: This is client-side protection only. Server-side validation is still required.
  *
  * Validates form submissions using three invisible layers:
  * 1. Interaction detection - requires EITHER pointer movement (10+) OR keyboard input (3+ keys), not both
@@ -13,7 +13,8 @@
  * validate returns { valid: boolean, error: string|null }
  */
 
-import { useRef, useCallback, useState, useEffect } from "react";
+// biome-ignore assist/source/organizeImports: intentional order
+import { useRef, useState, useEffect, useCallback } from "react";
 
 export function useHumanCheck({ minTime = 2500 } = {}) {
   const startTime = useRef(null);

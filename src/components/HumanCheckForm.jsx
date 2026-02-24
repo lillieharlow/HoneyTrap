@@ -15,10 +15,11 @@
  * @returns {JSX.Element}
  */
 
-import { useRef, useEffect, useState } from "react";
+// biome-ignore assist/source/organizeImports: intentional order
+import  { useRef, useState, useEffect } from "react";
 
-import { useHumanCheck } from "../hooks/useHumanCheck";
 import HoneypotField from "./HoneypotField";
+import { useHumanCheck } from "../hooks/useHumanCheck";
 
 export default function HumanCheckForm({
   children,
