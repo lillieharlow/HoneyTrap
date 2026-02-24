@@ -1,5 +1,5 @@
 # HoneyTrap - Accessibility-first CSS
-Copy and paste this CSS into your project `index.css` file to ensure WCAG 2.2 AA compliance with HoneyTrap components.
+Copy and paste the CSS below into your project `index.css` file to ensure WCAG 2.2 AA compliance with HoneyTrap components.
 
 ## Accessibility Features
 
@@ -19,7 +19,7 @@ You can customise the colour values in `:root`, but ensure:
 Use this contrast checker to ensure accessibility-first: https://webaim.org/resources/contrastchecker/
 
 ```css
-/* Color Variables */
+/* Colour Variables */
 :root {
   --color-primary: #2563eb;
   --color-border: #6b7280;
@@ -66,7 +66,7 @@ label:focus-within {
   outline-offset: 2px;
 }
 
-/* Error Messages (WCAG 1.4.3, 4.1.3) - High contrast colors for visibility. Used with aria-live regions for screen readers */
+/* Error Messages (WCAG 1.4.3, 4.1.3) - High contrast colours for visibility. Used with aria-live regions for screen readers */
 .hc-error {
   background: var(--color-error-bg);
   color: var(--color-error);

@@ -1,22 +1,10 @@
-/**
- * Global styles for HoneyTrap application.
+/*
+ * Global styles for HoneyTrap - Accessibility-first form protection.
  * 
- * Accessibility-first CSS using design tokens for:
- * - Color palette (text, primary, success, error)
- * - Spacing scale (space-1 through space-5)
- * - Border radius (sm, md)
- * - Typography (font stack, line height)
- * 
- * Focus indicators: 3px solid blue with 2px offset on all interactive elements.
- * Form inputs: Full width responsive, 1rem font size (prevents iOS zoom).
- * 
- * Components:
- * - .app-* : Main app layout and typography
- * - .form-* : Form field styling (accessible inputs/textareas)
- * - .hc-* : Human check form components (checkbox, error messages)
- * - .honeypot-container : Hidden honeypot field positioning
+ * Design tokens: Colour palette, spacing scale, typography.
+ * Focus indicators: 3px outline with 2px offset (WCAG 2.2 AA).
+ * Form inputs: 1rem font prevents iOS zoom on focus.
  */
-
 * {
   box-sizing: border-box;
 }
@@ -148,7 +136,7 @@ label:focus-within {
   outline-offset: 2px;
 }
 
-/* Bot Protection */
+/* Honeypot Field */
 .honeypot-container {
   position: absolute;
   left: -10000px;

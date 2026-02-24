@@ -1,16 +1,3 @@
-/**
- * Main application component demonstrating HoneyTrap bot protection.
- * Displays a form with email and message fields protected by three invisible bot protection layers:
- * 1. Honeypot field (hidden, catches bots that auto-fill)
- * 2. Timing check (prevents instant submissions)
- * 3. Interaction detection (requires pointer movement OR keyboard input)
- *
- * Shows success screen after user passes all validation checks.
- *
- * @component
- * @returns {JSX.Element} Form or success view depending on submission state
- */
-
 // biome-ignore assist/source/organizeImports: false positive
 import { useState } from "react";
 
@@ -18,6 +5,13 @@ import HumanCheckForm from "./components/HumanCheckForm";
 import FormField from "./components/FormField";
 import "./index.css";
 
+/**
+ * Main app component demonstrating HoneyTrap bot protection.
+ * Shows success screen after user passes all validation checks.
+ *
+ * @component
+ * @returns {JSX.Element} Form or success view depending on submission state
+ */
 export default function App() {
   const [submitted, setSubmitted] = useState(false);
 

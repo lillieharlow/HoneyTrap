@@ -1,21 +1,38 @@
-/**
- * Hook that provides form validation to detect bot submissions.
- * IMPORTANT: This is client-side protection only. Server-side validation is still required.
- *
- * Validates form submissions using three invisible layers:
- * 1. Interaction detection - requires EITHER pointer movement (10+) OR keyboard input (3+ keys), not both
- * 2. Timing check - prevents submissions under 2.5 seconds
- * 3. Honeypot field - detects if hidden field was filled
- *
- * @param {Object} options
- * @param {number} [options.minTime=2500] - Minimum milliseconds before form submission is allowed.
- * @returns {Object} { error, validate(formElement, honeyTrap), reset() }
- * validate returns { valid: boolean, error: string|null }
- */
-
-// biome-ignore assist/source/organizeImports: intentional order
+// biome-ignore assist/source/organizeImports: preserving import order for clarity
 import { useRef, useState, useEffect, useCallback } from "react";
 
+/**
+ * Helper hook to attach document event listeners with automatic cleanup.
+ * @param {string} eventName - The event to listen for
+ * @param {Function} handler - The event handler function
+ */
+const useDocumentEvent = (eventName, handler) => {
+  useEffect(() => {
+    document.addEventListener(eventName, handler);
+    return () => document.removeEventListener(eventName, handler);
+  }, [eventName, handler]);
+};
+
+/**
+ * Custom hook that provides client-side bot detection for form validation.
+ * 
+ * Server-side validation required for actual security (client-side can be bypassed by high-level bots).
+ * 
+ * Detection layers:
+ * 1. Interaction - Requires pointer movement (10+) OR keyboard input (3+ keys)
+ * 2. Timing - Blocks submissions faster than minimum time threshold
+ * 3. Honeypot - Validates hidden field remains empty
+ * 
+ * @param {Object} [options] - Configuration options
+ * @param {number} [options.minTime=2500] - Minimum milliseconds required before form can be submitted
+ * @returns {Object} Validation interface
+ * @returns {string|null} returns.error - Current validation error message or null
+ * @returns {Function} returns.validate - Validates form: validate(formElement, honeypotFieldName)
+ * @returns {Function} returns.reset - Resets all tracking counters and errors
+ * 
+ * @example
+ * const { error, validate, reset } = useHumanCheck({ minTime: 3000 });
+ */
 export function useHumanCheck({ minTime = 2500 } = {}) {
   const startTime = useRef(null);
   const pointerMoves = useRef(0);
@@ -26,46 +43,41 @@ export function useHumanCheck({ minTime = 2500 } = {}) {
     startTime.current = Date.now();
   }, []);
 
-  useEffect(() => {
-    const trackPointer = () => pointerMoves.current++;
-    document.addEventListener("pointermove", trackPointer);
-    return () => document.removeEventListener("pointermove", trackPointer);
-  }, []);
+  useDocumentEvent("pointermove", () => pointerMoves.current++);
+  useDocumentEvent("keydown", () => keyPresses.current++);
 
-  useEffect(() => {
-    const trackKeyboard = () => keyPresses.current++;
-    document.addEventListener("keydown", trackKeyboard);
-    return () => document.removeEventListener("keydown", trackKeyboard);
+  const setValidationError = useCallback((message) => {
+    setError(message);
+    return { valid: false, error: message };
   }, []);
 
   const validate = useCallback(
     (formElement, honeyTrap) => {
       const now = Date.now();
       if (now - startTime.current < minTime) {
-        const errorMsg = "Form submitted too quickly. Please take your time.";
-        setError(errorMsg);
-        return { valid: false, error: errorMsg };
+        return setValidationError(
+          "Form submitted too quickly. Please take your time.",
+        );
       }
 
       const honeypot = formElement.elements[honeyTrap];
       if (honeypot?.value.trim()) {
-        const errorMsg = "Bot detected. Please leave the honeypot field empty.";
-        setError(errorMsg);
-        return { valid: false, error: errorMsg };
+        return setValidationError(
+          "Bot detected. Please leave the honeypot field empty.",
+        );
       }
 
       if (pointerMoves.current < 10 && keyPresses.current < 3) {
-        const errorMsg =
+        return setValidationError(
           "Please interact with the form using your mouse/touch or " +
-          "keyboard before submitting.";
-        setError(errorMsg);
-        return { valid: false, error: errorMsg };
+          "keyboard before submitting.",
+        );
       }
 
       setError(null);
       return { valid: true, error: null };
     },
-    [minTime],
+    [minTime, setValidationError],
   );
 
   const reset = useCallback(() => {

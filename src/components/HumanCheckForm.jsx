@@ -1,12 +1,19 @@
+// biome-ignore assist/source/organizeImports: intentional order
+import { useRef, useState, useEffect } from "react";
+
+import HoneypotField from "./HoneypotField";
+import { useHumanCheck } from "../hooks/useHumanCheck";
+
 /**
  * Form wrapper with bot protection using three security layers:
  * 1. Honeypot field (hidden, aria-hidden)
  * 2. Timing check (minimum 2.5 seconds before submission)
- * 3. Interaction detection (requires either pointer movement 10+ times OR keyboard input 3+ key presses, not both)
+ * 3. Interaction detection (requires pointer movement 10+ times OR keyboard input 3+ key presses)
  *
  * Accessible for all users: keyboard-only, screen readers, motor disabilities, touch devices.
- * Server-side validation required for actual security (client-side can be bypassed).
+ * Server-side validation required for actual security (client-side can be bypassed by high-level bots).
  *
+ * @component
  * @param {Object} props
  * @param {JSX.Element} props.children - Form fields to render inside the form.
  * @param {Function} [props.onValidSubmit] - Callback fired when form passes all validation checks.
@@ -14,13 +21,6 @@
  * @param {string} [props.honeypotName="website"] - Name attribute for the hidden honeypot field.
  * @returns {JSX.Element}
  */
-
-// biome-ignore assist/source/organizeImports: intentional order
-import  { useRef, useState, useEffect } from "react";
-
-import HoneypotField from "./HoneypotField";
-import { useHumanCheck } from "../hooks/useHumanCheck";
-
 export default function HumanCheckForm({
   children,
   onValidSubmit,
