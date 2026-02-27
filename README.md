@@ -45,10 +45,14 @@ MIT License.
 
 ## Software Requirements
 
+### Demo Install
+- **React:** 19.x or higher
 - **Node.js:** 18.x or higher
 - **npm:** 9.x or higher
-- **React:** 19.x (compatible with 18.x)
 - **Git:** Any recent version (for cloning the repository)
+
+### Existing Project Install
+- **React:** 19.x or higher
 
 ---
 
