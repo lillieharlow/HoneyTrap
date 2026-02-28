@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App.jsx";
 
 /**
- * Application entry point.
+ * App entry point.
  * Renders the React App component into the DOM root element.
  */
 createRoot(document.getElementById("root")).render(

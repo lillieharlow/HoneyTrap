@@ -1,8 +1,8 @@
 /*
- * Global styles for HoneyTrap - Accessibility-first form protection.
+ * Global styles for HoneyTrap.
  * 
  * Design tokens: Colour palette, spacing scale, typography.
- * Focus indicators: 3px outline with 2px offset (WCAG 2.2 AA).
+ * Focus indicators: 3px outline with 2px offset.
  * Form inputs: 1rem font prevents iOS zoom on focus.
  */
 * {

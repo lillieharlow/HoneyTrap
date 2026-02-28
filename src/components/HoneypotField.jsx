@@ -1,5 +1,5 @@
 /**
- * Hidden honeypot input to catch spam form submissions.
+ * Hidden honeypot input.
  *
  * @component
  * @param {Object} props

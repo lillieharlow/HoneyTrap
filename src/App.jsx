@@ -6,7 +6,7 @@ import FormField from "./components/FormField";
 import "./index.css";
 
 /**
- * Main app component demonstrating HoneyTrap bot protection.
+ * Main app demo for HoneyTrap bot protection.
  * Shows success screen after user passes all validation checks.
  *
  * @component

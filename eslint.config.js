@@ -5,7 +5,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 
 /**
- * ESLint configuration for HoneyTrap project.
+ * ESLint configuration.
  * Enforces code formatting: 2-space indent, double quotes, semicolons, 80 char max-len.
  * @see https://eslint.org/docs/latest/use/configure/
  */

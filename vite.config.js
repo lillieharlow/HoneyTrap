@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 /**
- * Vite configuration for HoneyTrap project.
+ * Vite configuration.
  * Configures React plugin for development and production builds.
  * @see https://vite.dev/config/
  */

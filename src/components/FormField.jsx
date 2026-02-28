@@ -1,5 +1,5 @@
 /**
- * Reusable labelled form field wrapper with explicit labelling for accessibility.
+ * Reusable labelled form field wrapper.
  * Label is associated with input via htmlFor/id for clear semantic connection.
  *
  * Accessibility: Screen readers announce labels, label click focuses input, keyboard users interact naturally.
