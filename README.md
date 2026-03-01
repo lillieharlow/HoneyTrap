@@ -1,6 +1,8 @@
 # HoneyTrap
 
-A client-side, accessibility-first React form library that stops spam bots without CAPTCHAs. 100% WCAG 2.2 AA compliant.
+## Accessible Spam Defence for React Forms
+
+A source code kit for client-side, accessibility-first React form protection from spam bots. A set of reusable, invisble React components and custom hook for manual integration into any React application. No CAPTCHA, 100% WCAG 2.2 AA compliant.
 
 **Detects bots through three invisible layers of human behaviour**
 
